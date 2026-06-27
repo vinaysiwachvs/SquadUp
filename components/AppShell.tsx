@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Platform, StatusBar as RNStatusBar } from "react-native";
+import { StyleSheet } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import { StatusBar as ExpoStatusBar } from "expo-status-bar";
 

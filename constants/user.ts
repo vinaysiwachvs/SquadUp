@@ -28,6 +28,26 @@ const user = {
 			color: theme.colors.status.green,
 		},
 	],
+	sports: [
+		{
+			id: "1",
+			emoji: "🏀",
+			name: "Basketball",
+			level: "Intermediate",
+		},
+		{
+			id: "2",
+			emoji: "⚽",
+			name: "Soccer",
+			level: "Advanced",
+		},
+		{
+			id: "3",
+			emoji: "🎾",
+			name: "Tennis",
+			level: "Beginner",
+		},
+	],
 	settings: {
 		searchRadius: {
 			min: 1,
