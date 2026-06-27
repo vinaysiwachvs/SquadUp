@@ -1,8 +1,19 @@
-import { StatusBar } from "expo-status-bar";
+import { StatusBar as ExpoStatusBar } from "expo-status-bar";
 import React, { useState } from "react";
-import { SafeAreaView, StyleSheet, Text, View } from "react-native";
+import {
+	SafeAreaView,
+	StyleSheet,
+	Text,
+	View,
+	Platform,
+	StatusBar as RNStatusBar,
+} from "react-native";
 
 import NavigationMenu from "./components/NavigationMenu";
+import HomeScreen from "./components/screens/HomeScreen";
+import DiscoverScreen from "./components/screens/DiscoverScreen";
+import ChatScreen from "./components/screens/ChatScreen";
+import ProfileScreen from "./components/screens/ProfileScreen";
 
 type NavigationMenuTabKey = "home" | "discover" | "create" | "chat" | "profile";
 
@@ -19,18 +30,18 @@ export default function App() {
 
 	return (
 		<SafeAreaView style={styles.safeArea}>
-			<View style={styles.content}>
-				<Text style={styles.screenTitle}>
-					{screenTitles[activeTab]}
-				</Text>
-				<Text style={styles.screenSubtitle}>
-					This is the {screenTitles[activeTab]} screen.
-				</Text>
-			</View>
+			{activeTab === "home" && <HomeScreen />}
+			{activeTab === "discover" && <DiscoverScreen />}
+			{activeTab === "chat" && <ChatScreen />}
+			{activeTab === "profile" && (
+				<ProfileScreen
+					onSettings={() => console.log("Settings pressed")}
+				/>
+			)}
 
 			<NavigationMenu activeTab={activeTab} onTabPress={setActiveTab} />
 
-			<StatusBar style='auto' />
+			<ExpoStatusBar style='auto' />
 		</SafeAreaView>
 	);
 }
@@ -39,6 +50,7 @@ const styles = StyleSheet.create({
 	safeArea: {
 		flex: 1,
 		backgroundColor: "#f4f5f7",
+		paddingTop: Platform.OS === "android" ? RNStatusBar.currentHeight : 0,
 	},
 	content: {
 		flex: 1,
