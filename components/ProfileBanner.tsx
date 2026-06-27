@@ -1,11 +1,5 @@
 import React from "react";
-import {
-	Platform,
-	StyleSheet,
-	Text,
-	TouchableOpacity,
-	View,
-} from "react-native";
+import { Platform, StyleSheet, TouchableOpacity, View } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { Settings } from "lucide-react-native";
 import theme from "../constants/theme";

@@ -22,32 +22,32 @@ import {
 
 import Slider from "@react-native-community/slider";
 import theme from "../../constants/theme";
-import settingsDefaults from "../../constants/settings";
+import user from "../../constants/user";
 
 interface SettingsScreenProps {
 	onClose?: () => void;
 }
 
 export default function SettingsScreen({ onClose }: SettingsScreenProps) {
-	const [name, setName] = useState(settingsDefaults.profile.name);
-	const [email, setEmail] = useState(settingsDefaults.profile.email);
-	const [bio, setBio] = useState(settingsDefaults.profile.bio);
+	const [name, setName] = useState(user.profile.name);
+	const [email, setEmail] = useState(user.profile.email);
+	const [bio, setBio] = useState(user.profile.bio);
 
 	const [radius, setRadius] = useState(
-		settingsDefaults.searchRadius.defaultValue,
+		user.settings.searchRadius.defaultValue,
 	);
 
 	const [pushEnabled, setPushEnabled] = useState(
-		settingsDefaults.notifications.push,
+		user.settings.notifications.push,
 	);
 	const [emailEnabled, setEmailEnabled] = useState(
-		settingsDefaults.notifications.email,
+		user.settings.notifications.email,
 	);
 	const [publicProfile, setPublicProfile] = useState(
-		settingsDefaults.privacy.publicProfile,
+		user.settings.privacy.publicProfile,
 	);
 	const [hideDistance, setHideDistance] = useState(
-		settingsDefaults.privacy.hideDistance,
+		user.settings.privacy.hideDistance,
 	);
 
 	return (
@@ -118,9 +118,14 @@ export default function SettingsScreen({ onClose }: SettingsScreenProps) {
 						<Text style={styles.cardTitle}>Preferences</Text>
 					</View>
 					<View style={styles.radiusRow}>
-						<Text style={styles.radiusValue}>
-							Search Radius: {radius} km
-						</Text>
+						<View style={styles.settingRow}>
+							<Text style={styles.settingTitle}>
+								Search Radius
+							</Text>
+						</View>
+						<View>
+							<Text style={styles.radiusValue}>{radius} km</Text>
+						</View>
 					</View>
 					<Slider
 						minimumValue={1}
@@ -342,7 +347,7 @@ const styles = StyleSheet.create({
 	},
 
 	radiusValue: {
-		fontSize: 15,
+		fontSize: 16,
 		color: theme.colors.primary,
 		fontWeight: "700",
 	},

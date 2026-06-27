@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import theme from "../../constants/theme";
+import user from "../../constants/user";
 import ProfileBanner from "../ProfileBanner";
+import ProfileDetailCard from "../ProfileDetailCard";
 import SettingsScreen from "./SettingsScreen";
 
 interface ProfileScreenProps {
@@ -23,13 +25,13 @@ export default function ProfileScreen({
 				<>
 					<ProfileBanner onSettingsPress={onOpenSettings} />
 					<View style={styles.profileContent}>
-						<Text style={styles.title}>
-							Hi there, welcome back.
-						</Text>
-						<Text style={styles.subtitle}>
-							Open settings to update your profile, notifications,
-							and search radius.
-						</Text>
+						<ProfileDetailCard
+							name={user.profile.name}
+							location={user.profile.location}
+							sportsCount={user.profile.sportsCount}
+							bio={user.profile.bio}
+							stats={user.stats}
+						/>
 					</View>
 				</>
 			)}
@@ -43,17 +45,8 @@ const styles = StyleSheet.create({
 		backgroundColor: theme.colors.background,
 	},
 	profileContent: {
+		marginTop: 30,
 		padding: 16,
-	},
-	title: {
-		fontSize: 24,
-		fontWeight: "700",
-		color: theme.colors.textPrimary,
-		marginBottom: 8,
-	},
-	subtitle: {
-		fontSize: 16,
-		lineHeight: 22,
-		color: theme.colors.textMuted,
+		paddingTop: 24,
 	},
 });
