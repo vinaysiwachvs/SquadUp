@@ -3,8 +3,6 @@ import React, { useState } from "react";
 import {
 	SafeAreaView,
 	StyleSheet,
-	Text,
-	View,
 	Platform,
 	StatusBar as RNStatusBar,
 } from "react-native";
@@ -17,16 +15,9 @@ import ProfileScreen from "./components/screens/ProfileScreen";
 
 type NavigationMenuTabKey = "home" | "discover" | "create" | "chat" | "profile";
 
-const screenTitles: Record<NavigationMenuTabKey, string> = {
-	home: "Home",
-	discover: "Discover",
-	create: "Create",
-	chat: "Chat",
-	profile: "Profile",
-};
-
 export default function App() {
 	const [activeTab, setActiveTab] = useState<NavigationMenuTabKey>("home");
+	const [showProfileSettings, setShowProfileSettings] = useState(false);
 
 	return (
 		<SafeAreaView style={styles.safeArea}>
@@ -35,11 +26,18 @@ export default function App() {
 			{activeTab === "chat" && <ChatScreen />}
 			{activeTab === "profile" && (
 				<ProfileScreen
-					onSettings={() => console.log("Settings pressed")}
+					settingsOpen={showProfileSettings}
+					onOpenSettings={() => setShowProfileSettings(true)}
+					onCloseSettings={() => setShowProfileSettings(false)}
 				/>
 			)}
 
-			<NavigationMenu activeTab={activeTab} onTabPress={setActiveTab} />
+			{!showProfileSettings && (
+				<NavigationMenu
+					activeTab={activeTab}
+					onTabPress={setActiveTab}
+				/>
+			)}
 
 			<ExpoStatusBar style='auto' />
 		</SafeAreaView>
