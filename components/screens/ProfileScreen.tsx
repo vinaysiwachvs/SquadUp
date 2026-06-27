@@ -1,11 +1,12 @@
 import React from "react";
-import { StyleSheet, Text, View, ScrollView } from "react-native";
+import { StyleSheet, View, ScrollView } from "react-native";
 import theme from "../../constants/theme";
 import user from "../../constants/user";
 import ProfileBanner from "../ProfileBanner";
 import ProfileDetailCard from "../ProfileDetailCard";
 import SportsList from "../SportsList";
 import SettingsScreen from "./SettingsScreen";
+import TeamsList from "../TeamsList";
 
 interface ProfileScreenProps {
 	settingsOpen: boolean;
@@ -38,6 +39,7 @@ export default function ProfileScreen({
 							/>
 						</View>
 						<SportsList sports={user.sports} />
+						<TeamsList teams={user.teams} />
 						<View style={{ paddingBottom: 75 }}></View>
 					</ScrollView>
 				</>

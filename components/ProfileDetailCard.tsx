@@ -3,20 +3,10 @@ import { StyleSheet, Text, View } from "react-native";
 import { CalendarDays, Trophy, Users } from "lucide-react-native";
 import theme from "../constants/theme";
 
-interface StatItem {
-	label: string;
-	value: string | number;
-	icon?: string;
-	color?: string;
-}
-
-interface ProfileDetailCardProps {
-	name: string;
-	location: string;
-	sportsCount: number;
-	bio: string;
-	stats: StatItem[];
-}
+import {
+	// StatItem,
+	ProfileDetailCardProps,
+} from "../constants/Interface/profile";
 
 function getInitials(name: string) {
 	return name

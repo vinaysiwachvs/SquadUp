@@ -114,10 +114,7 @@ const styles = StyleSheet.create({
 		borderRadius: 42,
 		overflow: "hidden",
 
-		backgroundColor:
-			Platform.OS === "android"
-				? "rgba(255,255,255,0.82)"
-				: "transparent",
+		backgroundColor: "rgba(255,255,255,0.82)",
 
 		borderWidth: 1,
 		borderColor: "rgba(255,255,255,0.55)",

@@ -6,7 +6,7 @@ const user = {
 		email: "vinay.siwach@example.com",
 		bio: "Pickup league captain, weekend competitor, and sports enthusiast who loves soccer, basketball, tennis, and running.",
 		location: "Najafgarh, New Delhi",
-		sportsCount: 4,
+		sportsCount: 3,
 	},
 	stats: [
 		{
@@ -46,6 +46,26 @@ const user = {
 			emoji: "🎾",
 			name: "Tennis",
 			level: "Beginner",
+		},
+	],
+	teams: [
+		{
+			id: 1,
+			name: "The Aces",
+			about: "A competitive tennis team that loves to challenge themselves and improve their skills on the court.",
+			emoji: "🎾",
+			sport: "Tennis",
+			type: "Competitive",
+			playerCount: 8,
+		},
+		{
+			id: 2,
+			name: "Hoop Dreams",
+			about: "A recreational basketball team that enjoys playing for fun and staying active while bonding with teammates.",
+			emoji: "🏀",
+			sport: "Basketball",
+			type: "Recreational",
+			playerCount: 10,
 		},
 	],
 	settings: {

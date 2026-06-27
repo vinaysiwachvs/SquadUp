@@ -1,33 +1,30 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { ScrollView, StyleSheet } from "react-native";
+
 import theme from "../../constants/theme";
+import user from "../../constants/user";
+import { sessions } from "../../constants/session";
+
+import HomeHeader from "../HomeHeader";
+import SessionCard from "../SessionCard";
 
 export default function HomeScreen() {
 	return (
-		<View style={styles.container}>
-			<Text style={styles.title}>Home</Text>
-			<Text style={styles.subtitle}>Welcome to the Home screen.</Text>
-		</View>
+		<ScrollView
+			showsVerticalScrollIndicator={false}
+			contentContainerStyle={styles.content}>
+			<HomeHeader user={user} />
+
+			{sessions.map((session) => (
+				<SessionCard key={session.id} session={session} />
+			))}
+		</ScrollView>
 	);
 }
 
 const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		alignItems: "center",
-		justifyContent: "center",
-		padding: 24,
+	content: {
+		paddingBottom: 80,
 		backgroundColor: theme.colors.background,
-	},
-	title: {
-		fontSize: 28,
-		fontWeight: "700",
-		color: theme.colors.textPrimary,
-	},
-	subtitle: {
-		marginTop: 8,
-		color: theme.colors.textMuted,
-		fontSize: 16,
-		textAlign: "center",
 	},
 });

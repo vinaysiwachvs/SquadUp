@@ -1,59 +1,45 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
+import { Users } from "lucide-react-native";
 import theme from "../constants/theme";
-import { Sport } from "../constants/Interface/sport";
+import { Team } from "../constants/Interface/team";
 
-interface SportsListProps {
-	sports: Sport[];
+interface TeamsListProps {
+	teams: Team[];
 	title?: string;
 }
 
-const CARD_COLORS = [
-	"#EAF5F1",
-	"#FDF3E7",
-	"#F3E8FF",
-	"#EAF4FD",
-	"#FFE8E8",
-	"#E8F7F6",
-	"#FDF6E3",
-	"#ECECFF",
-];
-
-export default function SportsList({
-	sports,
-	title = "My Sports",
-}: SportsListProps) {
+export default function TeamsList({
+	teams,
+	title = "My Teams",
+}: TeamsListProps) {
 	return (
 		<View style={styles.container}>
 			<Text style={styles.title}>{title}</Text>
 
 			<View style={styles.listContainer}>
-				{sports.map((sport, index) => (
-					<View key={sport.id} style={styles.card}>
+				{teams.map((team) => (
+					<View key={team.id} style={styles.card}>
 						<View style={styles.leftSection}>
-							<View
-								style={[
-									styles.emojiContainer,
-									{
-										backgroundColor:
-											CARD_COLORS[
-												index % CARD_COLORS.length
-											],
-									},
-								]}>
-								<Text style={styles.emoji}>{sport.emoji}</Text>
+							<View style={styles.emojiContainer}>
+								<Text style={styles.emoji}>{team.emoji}</Text>
 							</View>
 
-							<View style={styles.sportInfo}>
-								<Text style={styles.sportName}>
-									{sport.name}
+							<View style={styles.teamInfo}>
+								<Text style={styles.teamName}>{team.name}</Text>
+
+								<Text style={styles.teamMeta}>
+									{team.sport}
+									{team.type ? ` • ${team.type}` : ""}
 								</Text>
 							</View>
 						</View>
 
-						<View style={styles.levelBadge}>
-							<Text style={styles.levelBadgeText}>
-								{sport.level ?? "-"}
+						<View style={styles.playerContainer}>
+							<Users size={16} color='#374151' strokeWidth={2} />
+
+							<Text style={styles.playerCount}>
+								{team.playerCount ?? 0}
 							</Text>
 						</View>
 					</View>
@@ -62,7 +48,6 @@ export default function SportsList({
 		</View>
 	);
 }
-
 const styles = StyleSheet.create({
 	container: {
 		marginBottom: 24,
@@ -117,6 +102,8 @@ const styles = StyleSheet.create({
 
 		alignItems: "center",
 		justifyContent: "center",
+		backgroundColor: theme.colors.background,
+
 		marginRight: 12,
 	},
 
@@ -124,29 +111,33 @@ const styles = StyleSheet.create({
 		fontSize: 28,
 	},
 
-	sportInfo: {
+	teamInfo: {
 		flex: 1,
 	},
 
-	sportName: {
+	teamName: {
 		fontSize: 18,
 		fontWeight: "700",
 		color: theme.colors.textPrimary,
 		marginBottom: 6,
 	},
 
-	levelBadge: {
-		backgroundColor: "#F4F6F8",
-
-		paddingHorizontal: 14,
-		paddingVertical: 8,
-
-		borderRadius: 14,
-	},
-
-	levelBadgeText: {
-		fontSize: 14,
+	teamMeta: {
+		fontSize: 15,
 		fontWeight: "500",
 		color: theme.colors.textMuted,
+	},
+
+	playerContainer: {
+		flexDirection: "row",
+		alignItems: "center",
+		paddingLeft: 12,
+	},
+
+	playerCount: {
+		fontSize: 14,
+		fontWeight: "500",
+		color: theme.colors.textPrimary,
+		marginLeft: 4,
 	},
 });
