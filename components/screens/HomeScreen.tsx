@@ -6,18 +6,18 @@ import user from "../../constants/user";
 import { sessions } from "../../constants/session";
 
 import HomeHeader from "../HomeHeader";
-import SessionCard from "../SessionCard";
+import SessionList from "../SessionList";
 
 export default function HomeScreen() {
 	return (
 		<ScrollView
 			showsVerticalScrollIndicator={false}
 			contentContainerStyle={styles.content}>
+			{/* Home Header */}
 			<HomeHeader user={user} />
 
-			{sessions.map((session) => (
-				<SessionCard key={session.id} session={session} />
-			))}
+			{/* Session */}
+			<SessionList sessions={sessions} />
 		</ScrollView>
 	);
 }

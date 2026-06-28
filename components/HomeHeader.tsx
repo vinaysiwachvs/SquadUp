@@ -50,7 +50,6 @@ const styles = StyleSheet.create({
 	container: {
 		paddingHorizontal: 20,
 		paddingTop: 18,
-		marginBottom: 20,
 	},
 
 	topRow: {
