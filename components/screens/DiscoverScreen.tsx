@@ -1,33 +1,61 @@
-import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import React, { useState } from "react";
+import { ScrollView, StyleSheet } from "react-native";
+
 import theme from "../../constants/theme";
+import user from "../../constants/user";
+
+import DiscoverHeader from "../DiscoverHeader";
+import SegmentedControl from "../SegmentedControl";
+import SessionList from "../SessionList";
+// import PlayerList from "../PlayerList";
+
+import { sessions } from "../../constants/session";
+import TeamsList from "../TeamsList";
 
 export default function DiscoverScreen() {
+	const tabs = [
+		{
+			id: "players",
+			label: "Players",
+		},
+		{
+			id: "sessions",
+			label: "Sessions",
+		},
+		{
+			id: "teams",
+			label: "Teams",
+		},
+	];
+
+	const [selectedTab, setSelectedTab] = useState("players");
+
 	return (
-		<View style={styles.container}>
-			<Text style={styles.title}>Discover</Text>
-			<Text style={styles.subtitle}>Find new spots and experiences.</Text>
-		</View>
+		<ScrollView
+			showsVerticalScrollIndicator={false}
+			contentContainerStyle={styles.content}>
+			<DiscoverHeader />
+
+			<SegmentedControl
+				items={tabs}
+				selected={selectedTab}
+				onChange={setSelectedTab}
+			/>
+
+			{selectedTab === "sessions" && <SessionList sessions={sessions} />}
+
+			{selectedTab === "players" &&
+				// <PlayerList />
+				null}
+
+			{selectedTab === "teams" && <TeamsList teams={user.teams} />}
+		</ScrollView>
 	);
 }
 
 const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		alignItems: "center",
-		justifyContent: "center",
-		padding: 24,
+	content: {
+		paddingBottom: 80,
 		backgroundColor: theme.colors.background,
-	},
-	title: {
-		fontSize: 28,
-		fontWeight: "700",
-		color: theme.colors.textPrimary,
-	},
-	subtitle: {
-		marginTop: 8,
-		color: theme.colors.textMuted,
-		fontSize: 16,
-		textAlign: "center",
 	},
 });

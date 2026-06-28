@@ -1,14 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 
-import {
-	ScrollView,
-	StyleSheet,
-	Switch,
-	Text,
-	TextInput,
-	TouchableOpacity,
-	View,
-} from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import { Team } from "../../constants/Interface/team";
 
 interface TeamScreenProps {
